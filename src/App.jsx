@@ -50,7 +50,7 @@ function App() {
 
     return (
         <div className="text-center min-h-screen flex justify-center items-start ">
-            <div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 w-[95%]  lg:w-1/2 mt-20 min-h-[80vh] rounded-2xl">
+            <div className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 w-[95%]  lg:w-1/2 mt-20 min-h-[80vh] rounded-2xl shadow-2xl shadow-cyan-900">
                 <h1 className="text-5xl p-10  text-white ">Todo List</h1>
                 <form onSubmit={addItem} className="pb-5">
                     <input className="border-2 border-green-500 outline-none p-2 px-4 font-bold focus:border-black focus:rounded-xl "

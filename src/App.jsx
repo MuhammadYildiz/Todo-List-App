@@ -73,7 +73,7 @@ function App() {
                         )
                     })}
                 </div>
-                {items.length>0 && <button onClick={()=>clearAll()} className={items.length==0  ? "hidden":"bg-black text-white p-2 px-3 m-2 hover:rounded-xl  hover:bg-gradient-to-r from-red-500 to-red-900 font-bold mb-6 "}
+                {items.length>0 && <button onClick={()=>clearAll()} className="bg-black text-white p-2 px-3 m-2 hover:rounded-xl  hover:bg-gradient-to-r from-red-500 to-red-900 font-bold mb-6 "
                 type="button">
                     Clear All
                 </button>}

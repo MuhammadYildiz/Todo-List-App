@@ -48,6 +48,7 @@ function App() {
             return item
         })
         setItems(uppdateTodos)
+        setTomt("")
     }
     function deleteList(id) {
         const newArray = items.filter(item => item.id !== id)

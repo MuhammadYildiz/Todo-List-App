@@ -4,27 +4,32 @@ function App() {
     const [newItem, setnewItem] = useState("")
     const [items, setItems] = useState([])
     const [itemId, setitemId] = useState(1)
-    const [clear, setclear] = useState(true)
+    const [tomt, setTomt] = useState("")
     const getNewItem = (event) => {
         setnewItem(event.target.value)
+        setTomt("")
     }
 
     const addItem = (e) => {
         e.preventDefault()
         if (!newItem) {
-            alert("Enter a todo...")
-            return alert
+            setTomt(
+                <p className="bg-gradient-to-r from-red-500 to-red-700 text-white p-2 mb-5 mx-2 sm:mx-10 font-bold">
+                    Enter a new todo...
+                </p>
+            )
         }
-        setitemId(itemId + 1)
+        else {
+            setitemId(itemId + 1)
+            const item = {
+                id: itemId,
+                title: newItem,
+                done: false,
+            }
+            setItems(oldItems => [...oldItems, item])
+            setnewItem('')
+        }
 
-        const item = {
-            id: itemId,
-            title: newItem,
-            done: false,
-        }
-        setItems(oldItems => [...oldItems, item])
-        setnewItem('')
-        
     }
     const clearInput = () => {
         setnewItem("")
@@ -32,6 +37,8 @@ function App() {
     const clearAll = () => {
         const clearArray = []
         setItems(clearArray)
+        setnewItem("")
+        setTomt("")
     }
     const doneTodo = (id) => {
         let uppdateTodos = items.map((item) => {
@@ -45,7 +52,9 @@ function App() {
     function deleteList(id) {
         const newArray = items.filter(item => item.id !== id)
         setItems(newArray)
-        id = itemId 
+        id = itemId
+        setnewItem("")
+        setTomt("")
     }
 
     return (
@@ -55,26 +64,31 @@ function App() {
                 <form onSubmit={addItem} className="pb-5">
                     <input className="border-2 border-green-500 outline-none p-2 px-4 font-bold focus:border-black focus:rounded-xl "
                         type="text"
-                        onChange={getNewItem}
                         placeholder="Enter a Todo..."
                         value={newItem}
+                        onChange={getNewItem}
+                        onFocus={() => setnewItem("")}
                     />
                     <button className="bg-black text-white p-2 px-3 m-2 hover:rounded-xl  hover:bg-gradient-to-r from-emerald-500 to-emerald-900 font-bold min-w-[80px] " type="submit">
                         Add
                     </button>
-                    {newItem && <button onClick={clearInput} className="bg-black text-white p-2 px-3 m-2 hover:rounded-xl  hover:bg-gradient-to-r from-red-500 to-red-900 font-bold"type="button">
+                    {newItem && <button onClick={clearInput} className="bg-black text-white p-2 px-3 m-2 hover:rounded-xl  hover:bg-gradient-to-r from-red-500 to-red-900 font-bold" type="button">
                         Clear Input
                     </button>}
                 </form>
+
                 <div>
+                    <div>
+                        {tomt}
+                    </div>
                     {items.map(item => {
                         return (
                             <TodoItem doneTodo={doneTodo} deleteList={deleteList} item={item} key={item.id} />
                         )
                     })}
                 </div>
-                {items.length>0 && <button onClick={()=>clearAll()} className=" text-white p-3 px-3 m-2 hover:rounded-xl  bg-gradient-to-r from-red-500 to-red-900 font-bold mb-6 "
-                type="button">
+                {items.length > 0 && <button onClick={() => clearAll()} className=" text-white p-3 px-3 m-2 hover:rounded-xl  bg-gradient-to-r from-red-500 to-red-900 font-bold mb-6 "
+                    type="button">
                     Clear All
                 </button>}
             </div>

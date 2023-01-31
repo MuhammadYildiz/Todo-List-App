@@ -3,7 +3,7 @@ export default function (props) {
     return (
         <ul className="mb-5">
             <li key={props.item.id} className="flex flex-col sm:flex-row justify-around m-2 sm:mx-10  text-white">
-                <p className={props.item.done ? "line-through decoration-black decoration-4 text-xl p-2  bg-gradient-to-r from-red-900 to-red-500 w-[100%]" : "text-xl p-2  bg-gradient-to-r from-emerald-900 to-emerald-500 w-[100%]"}>
+                <p className={props.item.done ? "line-through decoration-black decoration-4 text-xl p-2 px-3  bg-gradient-to-r from-red-900 to-red-500 w-[100%] overflow-scroll" : "text-xl p-2 px-3 bg-gradient-to-r from-emerald-900 to-emerald-500 w-[100%] overflow-scroll"}>
                     {props.item.title}
                 </p>
                 <div className='flex justify-around'>
